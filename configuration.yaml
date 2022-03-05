@@ -1,0 +1,58 @@
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
+
+default_config:
+
+http:
+  use_x_forwarded_for: true
+  trusted_proxies:
+    - !secret http_trusted_proxy
+
+homeassistant:
+  name: Home
+  time_zone: Europe/London
+  elevation: 0
+  unit_system: metric
+  external_url: !secret homeassistant_external_url
+  internal_url: !secret homeassistant_internal_url
+
+tts:
+  - platform: google_translate
+
+google_assistant:
+  project_id: !secret google_assistant_project_id
+  service_account: !include google_assistant_service_account.json
+  report_state: true
+
+camera:
+  - platform: ffmpeg
+    name: !secret camera_nvr_1_name
+    input: !secret camera_nvr_1_input
+  - platform: ffmpeg
+    name: !secret camera_nvr_2_name
+    input: !secret camera_nvr_2_input
+  - platform: ffmpeg
+    name: !secret camera_nvr_3_name
+    input: !secret camera_nvr_3_input
+spotify:
+  client_id: !secret spotify_client_id
+  client_secret: !secret spotify_client_secret
+input_boolean:
+  start_transmission_switch:
+    name: Transmission
+    icon: mdi:car
+switch:
+  - platform: orvibo
+    discovery: false
+    switches:
+      - host: switch_orvibo_1_host
+        mac: switch_orvibo_1_mac
+        name: switch_orvibo_1_name
+light:
+  - platform: rymo
+    ip_address: !secret light_rymo_ip_address
+shell_command:
+  start_transmission: !secret shell_command_transmission_start
+  stop_transmission: !secret shell_command_transmission_stop

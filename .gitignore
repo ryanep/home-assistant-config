@@ -1,4 +1,7 @@
-*
+/*
+
+!custom_components
+!config
 !*.yaml
 !.gitignore
 !*.md

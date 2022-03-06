@@ -47,9 +47,9 @@ switch:
   - platform: orvibo
     discovery: false
     switches:
-      - host: switch_orvibo_1_host
-        mac: switch_orvibo_1_mac
-        name: switch_orvibo_1_name
+      - host: !secret switch_orvibo_1_host
+        mac: !secret switch_orvibo_1_mac
+        name: !secret switch_orvibo_1_name
 light:
   - platform: rymo
     ip_address: !secret light_rymo_ip_address

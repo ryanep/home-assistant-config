@@ -1,5 +1,6 @@
 group: !include config/groups.yaml
-automation: !include config/automations.yaml
+automation manual: !include config/automations.yaml
+automation ui: !include config/automations-ui.yaml
 script: !include config/scripts.yaml
 scene: !include config/scenes.yaml
 sensor: !include config/sensors.yaml

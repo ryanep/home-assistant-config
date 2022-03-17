@@ -306,3 +306,16 @@
     entity_id: light.study_2_main
     domain: light
   mode: single
+- id: '1647450902261'
+  alias: Water Fountain - Turn on
+  description: ''
+  trigger:
+  - platform: time
+    at: 07:30:00
+  condition: []
+  action:
+  - service: switch.turn_on
+    data: {}
+    target:
+      entity_id: switch.orvibo_switch_1
+  mode: single

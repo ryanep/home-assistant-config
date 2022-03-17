@@ -9,6 +9,7 @@
   action:
   - service: shell_command.start_transmission
   mode: single
+
 - id: '1642096194840'
   alias: Landing Light - Motion
   description: ''
@@ -16,13 +17,13 @@
   - type: motion
     platform: device
     device_id: 50ac688f3a0bd8a434c9a8f7766d2f4e
-    entity_id: binary_sensor.lumi_lumi_sensor_motion_aq2_ab2ac607_ias_zone
+    entity_id: binary_sensor.motion_landing_ias_zone
     domain: binary_sensor
   condition:
   - type: is_illuminance
     condition: device
     device_id: 50ac688f3a0bd8a434c9a8f7766d2f4e
-    entity_id: sensor.lumi_lumi_sensor_motion_aq2_illuminance
+    entity_id: sensor.motion_landing_illuminance
     domain: sensor
     below: 15
   action:
@@ -31,6 +32,7 @@
     entity_id: light.landing_main
     domain: light
   mode: single
+
 - id: '1642104788833'
   alias: Landing Light - No Motion
   description: Landing automation when there is no motion detected.
@@ -38,7 +40,7 @@
   - type: no_motion
     platform: device
     device_id: 50ac688f3a0bd8a434c9a8f7766d2f4e
-    entity_id: binary_sensor.lumi_lumi_sensor_motion_aq2_ab2ac607_ias_zone
+    entity_id: binary_sensor.motion_landing_ias_zone
     domain: binary_sensor
     for:
       hours: 0
@@ -56,6 +58,7 @@
     entity_id: light.landing_main
     domain: light
   mode: single
+
 - id: '1642152823912'
   alias: Slow Internet Notification
   description: ''
@@ -74,6 +77,7 @@
     message: Internet is running slow.
     title: Internet Slow
   mode: single
+  
 - id: '1642159359141'
   alias: Study Dimmer Switch
   description: ''
@@ -92,18 +96,7 @@
     domain: light
     brightness_pct: 50
   mode: single
-- id: '1642537260529'
-  alias: Tag Test is scanned
-  description: ''
-  trigger:
-  - platform: tag
-    tag_id: c232a013-e2fc-4d7d-94f2-ee54757a029b
-  condition: []
-  action:
-  - service: notify.mobile_app_ryans_iphone
-    data:
-      message: Scanned
-  mode: single
+
 - id: '1642684462952'
   alias: Stop Transmission Automation
   description: ''
@@ -115,6 +108,7 @@
   action:
   - service: shell_command.stop_transmission
   mode: single
+
 - id: '1642771051750'
   alias: Kitchen Lights - Motion
   description: ''
@@ -122,13 +116,13 @@
   - type: motion
     platform: device
     device_id: d09ea80a8f1f254e4c3b19e099bb7dbf
-    entity_id: binary_sensor.lumi_lumi_sensor_motion_aq2_ias_zone
+    entity_id: binary_sensor.motion_kitchen_ias_zone
     domain: binary_sensor
   condition:
   - type: is_illuminance
     condition: device
     device_id: d09ea80a8f1f254e4c3b19e099bb7dbf
-    entity_id: sensor.lumi_lumi_sensor_motion_aq2_66e1e407_illuminance
+    entity_id: sensor.motion_kitchen_illuminance
     domain: sensor
     below: 15
   action:
@@ -145,6 +139,7 @@
     entity_id: light.spotlight_3
     domain: light
   mode: single
+
 - id: '1642771097034'
   alias: Kitchen Lights - No Motion
   description: ''
@@ -152,7 +147,7 @@
   - type: no_motion
     platform: device
     device_id: d09ea80a8f1f254e4c3b19e099bb7dbf
-    entity_id: binary_sensor.lumi_lumi_sensor_motion_aq2_ias_zone
+    entity_id: binary_sensor.motion_kitchen_ias_zone
     domain: binary_sensor
     for:
       hours: 0
@@ -173,6 +168,7 @@
     entity_id: light.spotlight_3
     domain: light
   mode: single
+
 - id: '1642771675615'
   alias: Hall - Motion
   description: ''
@@ -180,13 +176,13 @@
   - type: motion
     platform: device
     device_id: 122796725d3ba1d0ced421910698d8fc
-    entity_id: binary_sensor.lumi_lumi_sensor_motion_aq2_30e6e007_ias_zone
+    entity_id: binary_sensor.motion_hall_ias_zone
     domain: binary_sensor
   condition:
   - type: is_illuminance
     condition: device
     device_id: 122796725d3ba1d0ced421910698d8fc
-    entity_id: sensor.lumi_lumi_sensor_motion_aq2_30e6e007_illuminance
+    entity_id: sensor.motion_hall_illuminance
     domain: sensor
     below: 15
   - condition: device
@@ -200,6 +196,7 @@
     entity_id: light.hall_main_light
     domain: light
   mode: single
+
 - id: '1642771716016'
   alias: Hall - No Motion
   description: ''
@@ -207,7 +204,7 @@
   - type: no_motion
     platform: device
     device_id: 122796725d3ba1d0ced421910698d8fc
-    entity_id: binary_sensor.lumi_lumi_sensor_motion_aq2_30e6e007_ias_zone
+    entity_id: binary_sensor.motion_hall_ias_zone
     domain: binary_sensor
   condition:
   - condition: device
@@ -221,6 +218,7 @@
     entity_id: light.hall_main_light
     domain: light
   mode: single
+
 - id: '1642795358412'
   alias: Study - Motion
   description: ''
@@ -228,22 +226,23 @@
   - type: motion
     platform: device
     device_id: 7e519494982423440d3df00c21536371
-    entity_id: binary_sensor.lumi_lumi_sensor_motion_aq2_6e33e307_ias_zone
+    entity_id: binary_sensor.motion_study_ias_zone
     domain: binary_sensor
   condition:
   - type: is_illuminance
     condition: device
     device_id: 7e519494982423440d3df00c21536371
-    entity_id: sensor.lumi_lumi_sensor_motion_aq2_6e33e307_illuminance
+    entity_id: sensor.motion_study_illuminance
     domain: sensor
     below: 15
   action:
   - type: turn_on
     device_id: d88601dbe030640ba70439c983361071
-    entity_id: light.light_strip_2
+    entity_id: light.study_strip_light
     domain: light
     brightness_pct: 100
   mode: single
+
 - id: '1642795520427'
   alias: Study - No Motion
   description: ''
@@ -251,7 +250,7 @@
   - type: no_motion
     platform: device
     device_id: 7e519494982423440d3df00c21536371
-    entity_id: binary_sensor.lumi_lumi_sensor_motion_aq2_6e33e307_ias_zone
+    entity_id: binary_sensor.motion_study_ias_zone
     domain: binary_sensor
     for:
       hours: 0
@@ -261,9 +260,10 @@
   action:
   - type: turn_off
     device_id: d88601dbe030640ba70439c983361071
-    entity_id: light.light_strip_2
+    entity_id: light.study_strip_light
     domain: light
   mode: single
+
 - id: '1642935294943'
   alias: Study 2 - Motion
   description: ''
@@ -271,13 +271,13 @@
   - type: motion
     platform: device
     device_id: 34c00b160cac87cf2b7c75e210493697
-    entity_id: binary_sensor.study_2_motion_sensor
+    entity_id: binary_sensor.motion_study_ias_zone
     domain: binary_sensor
   condition:
   - type: is_illuminance
     condition: device
     device_id: 50ac688f3a0bd8a434c9a8f7766d2f4e
-    entity_id: sensor.lumi_lumi_sensor_motion_aq2_illuminance
+    entity_id: sensor.motion_landing_illuminance
     domain: sensor
     below: 15
   action:
@@ -286,6 +286,7 @@
     entity_id: light.study_2_main
     domain: light
   mode: single
+
 - id: '1642935366431'
   alias: Study 2 - No Motion
   description: ''
@@ -293,7 +294,7 @@
   - type: no_motion
     platform: device
     device_id: 34c00b160cac87cf2b7c75e210493697
-    entity_id: binary_sensor.study_2_motion_sensor
+    entity_id: binary_sensor.motion_study_2_ias_zone
     domain: binary_sensor
     for:
       hours: 0
@@ -306,6 +307,7 @@
     entity_id: light.study_2_main
     domain: light
   mode: single
+
 - id: '1647450902261'
   alias: Water Fountain - Turn on
   description: ''

@@ -1,60 +1,17 @@
-group: !include config/groups.yaml
 automation manual: !include config/automations.yaml
 automation ui: !include automations.yaml
-script: !include config/scripts.yaml
+camera: !include config/cameras.yaml
+default_config: !include config/default-config.yaml
+google_assistant: !include config/google-assistant.yaml
+group: !include config/groups.yaml
+homeassistant: !include config/home-assistant.yaml
+http: !include config/http.yaml
+input_boolean: !include config/input-booleans.yaml
+light: !include config/lights.yaml
 scene: !include config/scenes.yaml
+script: !include config/scripts.yaml
 sensor: !include config/sensors.yaml
-
-default_config:
-
-http:
-  use_x_forwarded_for: true
-  trusted_proxies:
-    - !secret http_trusted_proxy
-
-homeassistant:
-  name: Home
-  time_zone: Europe/London
-  elevation: 0
-  unit_system: metric
-  external_url: !secret homeassistant_external_url
-  internal_url: !secret homeassistant_internal_url
-
-tts:
-  - platform: google_translate
-
-google_assistant:
-  project_id: !secret google_assistant_project_id
-  service_account: !include google_assistant_service_account.json
-  report_state: true
-
-camera:
-  - platform: ffmpeg
-    name: !secret camera_nvr_1_name
-    input: !secret camera_nvr_1_input
-  - platform: ffmpeg
-    name: !secret camera_nvr_2_name
-    input: !secret camera_nvr_2_input
-  - platform: ffmpeg
-    name: !secret camera_nvr_3_name
-    input: !secret camera_nvr_3_input
-spotify:
-  client_id: !secret spotify_client_id
-  client_secret: !secret spotify_client_secret
-input_boolean:
-  start_transmission_switch:
-    name: Transmission
-    icon: mdi:car
-switch:
-  - platform: orvibo
-    discovery: false
-    switches:
-      - host: !secret switch_orvibo_1_host
-        mac: !secret switch_orvibo_1_mac
-        name: !secret switch_orvibo_1_name
-light:
-  - platform: rymo
-    ip_address: !secret light_rymo_ip_address
-shell_command:
-  start_transmission: !secret shell_command_transmission_start
-  stop_transmission: !secret shell_command_transmission_stop
+shell_command: !include config/shell-commands.yaml
+spotify: !include config/spotify.yaml
+switch: !include config/switches.yaml
+tts: !include config/tts.yaml

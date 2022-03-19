@@ -1,0 +1,7 @@
+name: Home
+time_zone: Europe/London
+elevation: 0
+unit_system: metric
+temperature_unit: C
+external_url: !secret homeassistant_external_url
+internal_url: !secret homeassistant_internal_url

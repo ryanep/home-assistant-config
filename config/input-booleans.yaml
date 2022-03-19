@@ -1,0 +1,3 @@
+start_transmission_switch:
+  name: Transmission
+  icon: mdi:car

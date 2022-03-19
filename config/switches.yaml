@@ -1,0 +1,6 @@
+- platform: orvibo
+  discovery: false
+  switches:
+    - host: !secret switch_orvibo_1_host
+      mac: !secret switch_orvibo_1_mac
+      name: !secret switch_orvibo_1_name

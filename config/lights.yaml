@@ -1,0 +1,2 @@
+- platform: rymo
+  ip_address: !secret light_rymo_ip_address

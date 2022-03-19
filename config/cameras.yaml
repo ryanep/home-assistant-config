@@ -1,0 +1,9 @@
+- platform: ffmpeg
+  name: !secret camera_nvr_1_name
+  input: !secret camera_nvr_1_input
+- platform: ffmpeg
+  name: !secret camera_nvr_2_name
+  input: !secret camera_nvr_2_input
+- platform: ffmpeg
+  name: !secret camera_nvr_3_name
+  input: !secret camera_nvr_3_input

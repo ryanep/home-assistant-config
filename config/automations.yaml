@@ -271,7 +271,7 @@
   - type: motion
     platform: device
     device_id: 34c00b160cac87cf2b7c75e210493697
-    entity_id: binary_sensor.motion_study_ias_zone
+    entity_id: binary_sensor.motion_study_2_ias_zone
     domain: binary_sensor
   condition:
   - type: is_illuminance
@@ -313,7 +313,7 @@
   description: ''
   trigger:
   - platform: time
-    at: 07:30:00
+    at: 07:00:00
   condition: []
   action:
   - service: switch.turn_on

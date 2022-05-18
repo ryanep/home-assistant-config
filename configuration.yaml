@@ -8,7 +8,8 @@ homeassistant: !include config/home-assistant.yaml
 http: !include config/http.yaml
 input_boolean: !include config/input-booleans.yaml
 light: !include config/lights.yaml
-scene: !include config/scenes.yaml
+scene manual: !include config/scenes.yaml
+scene ui: !include scenes.yaml
 script: !include config/scripts.yaml
 sensor: !include config/sensors.yaml
 shell_command: !include config/shell-commands.yaml

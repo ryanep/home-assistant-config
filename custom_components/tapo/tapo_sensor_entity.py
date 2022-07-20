@@ -97,6 +97,24 @@ class TapoMonthEnergySensor(TapoSensor):
         return None
 
 
+class TapoThisMonthEnergySensor(TapoSensor):
+    def __init__(self, coordiantor: TapoUpdateCoordinator):
+        super().__init__(
+            coordiantor,
+            SensorConfig(
+                "this month energy",
+                DEVICE_CLASS_ENERGY,
+                STATE_CLASS_TOTAL_INCREASING,
+                ENERGY_KILO_WATT_HOUR,
+            ),
+        )
+
+    @property
+    def native_value(self) -> StateType:
+        if self.coordinator.data.energy_info is not None:
+            return self.coordinator.data.energy_info.this_month_energy / 1000
+        return None
+
 
 class TapoCurrentEnergySensor(TapoSensor):
     def __init__(self, coordiantor: TapoUpdateCoordinator):
@@ -153,6 +171,9 @@ class TapoSignalSensor(TapoSensor):
     @property
     def native_value(self) -> StateType:
         data: TapoDeviceState = self.coordinator.data
-        if data is not None:
-            return data.rssi
-        return 0
+        try:
+            if data is not None:
+                return data.rssi
+            return 0
+        except:
+            return 0

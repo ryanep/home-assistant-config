@@ -13,6 +13,9 @@ __pycache__
 .cloud
 .google.token
 
+
+scenes.yaml
+automations.yaml
 ip_bans.yaml
 secrets.yaml
 known_devices.yaml

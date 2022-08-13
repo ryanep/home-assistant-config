@@ -2,5 +2,5 @@
 - platform: command_line
   name: Raspberry Pi 4 Temperature
   command: !secret command_line_pi_temperature
-  unit_of_measurement: “°C”
-  value_template: ‘{{ value | multiply(0.001) }}’
+  unit_of_measurement: '°C'
+  value_template: '{{ value | multiply(0.001) | round(2) }}'

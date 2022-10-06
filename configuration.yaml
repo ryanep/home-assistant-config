@@ -1,5 +1,6 @@
 automation manual: !include config/automations.yaml
 automation ui: !include automations.yaml
+binary_sensor: !include config/binary-sensors.yaml
 camera: !include config/cameras.yaml
 default_config: !include config/default-config.yaml
 google_assistant: !include config/google-assistant.yaml

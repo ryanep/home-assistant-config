@@ -19,3 +19,6 @@ automations.yaml
 ip_bans.yaml
 secrets.yaml
 known_devices.yaml
+
+hacs_frontend
+hacs_frontend_experimental

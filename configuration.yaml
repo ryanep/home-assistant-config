@@ -15,4 +15,5 @@ script: !include config/scripts.yaml
 sensor: !include config/sensors.yaml
 shell_command: !include config/shell-commands.yaml
 switch: !include config/switches.yaml
+template: !include config/templates.yaml
 tts: !include config/tts.yaml

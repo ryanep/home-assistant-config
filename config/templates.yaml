@@ -1,0 +1,7 @@
+- sensor:
+  - name: Total Lights On
+    state: "{{ states.light | selectattr('state','eq','on') | list | count }}"
+    state_class: measurement
+  - name: Total Lights Off
+    state: "{{ states.light | selectattr('state','eq','off') | list | count }}"
+    state_class: measurement

@@ -128,15 +128,7 @@
   action:
   - type: turn_on
     device_id: 2abeb784892de00f1b8a2114cf642e80
-    entity_id: light.spotlight_1
-    domain: light
-  - type: turn_on
-    device_id: 560d4baddbc21311773b2b11f465c9de
-    entity_id: light.spotlight_2
-    domain: light
-  - type: turn_on
-    device_id: 7fc3147dc417105514a32b442a405091
-    entity_id: light.spotlight_3
+    entity_id: light.kitchen_spotlights
     domain: light
   mode: single
 
@@ -157,15 +149,7 @@
   action:
   - type: turn_off
     device_id: 2abeb784892de00f1b8a2114cf642e80
-    entity_id: light.spotlight_1
-    domain: light
-  - type: turn_off
-    device_id: 560d4baddbc21311773b2b11f465c9de
-    entity_id: light.spotlight_2
-    domain: light
-  - type: turn_off
-    device_id: 7fc3147dc417105514a32b442a405091
-    entity_id: light.spotlight_3
+    entity_id: light.kitchen_spotlights
     domain: light
   mode: single
 

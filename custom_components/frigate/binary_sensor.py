@@ -5,8 +5,7 @@ import logging
 from typing import Any, cast
 
 from homeassistant.components.binary_sensor import (
-    DEVICE_CLASS_MOTION,
-    DEVICE_CLASS_OCCUPANCY,
+    BinarySensorDeviceClass,
     BinarySensorEntity,
 )
 from homeassistant.config_entries import ConfigEntry
@@ -25,6 +24,7 @@ from . import (
     get_zones,
 )
 from .const import ATTR_CONFIG, DOMAIN, NAME
+from .icons import get_dynamic_icon_from_type
 
 _LOGGER: logging.Logger = logging.getLogger(__name__)
 
@@ -123,7 +123,7 @@ class FrigateObjectOccupancySensor(FrigateMQTTEntity, BinarySensorEntity):  # ty
     @property
     def name(self) -> str:
         """Return the name of the sensor."""
-        return f"{get_friendly_name(self._cam_name)} {self._obj_name} Occupancy".title()
+        return f"{self._obj_name} occupancy"
 
     @property
     def is_on(self) -> bool:
@@ -133,11 +133,18 @@ class FrigateObjectOccupancySensor(FrigateMQTTEntity, BinarySensorEntity):  # ty
     @property
     def device_class(self) -> str:
         """Return the device class."""
-        return cast(str, DEVICE_CLASS_OCCUPANCY)
+        return cast(str, BinarySensorDeviceClass.OCCUPANCY)
+
+    @property
+    def icon(self) -> str:
+        """Return the icon of the sensor."""
+        return get_dynamic_icon_from_type(self._obj_name, self._is_on)
 
 
 class FrigateMotionSensor(FrigateMQTTEntity, BinarySensorEntity):  # type: ignore[misc]
     """Frigate Motion Sensor class."""
+
+    _attr_name = "Motion"
 
     def __init__(
         self,
@@ -195,11 +202,6 @@ class FrigateMotionSensor(FrigateMQTTEntity, BinarySensorEntity):  # type: ignor
         }
 
     @property
-    def name(self) -> str:
-        """Return the name of the sensor."""
-        return f"{get_friendly_name(self._cam_name)} Motion".title()
-
-    @property
     def is_on(self) -> bool:
         """Return true if the binary sensor is on."""
         return self._is_on
@@ -207,4 +209,4 @@ class FrigateMotionSensor(FrigateMQTTEntity, BinarySensorEntity):  # type: ignor
     @property
     def device_class(self) -> str:
         """Return the device class."""
-        return cast(str, DEVICE_CLASS_MOTION)
+        return cast(str, BinarySensorDeviceClass.MOTION)

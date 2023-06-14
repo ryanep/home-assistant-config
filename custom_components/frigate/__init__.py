@@ -48,14 +48,8 @@ from .const import (
     STATUS_RUNNING,
     STATUS_STARTING,
 )
-from .views import (
-    JSMPEGProxyView,
-    NotificationsProxyView,
-    RecordingsProxyView,
-    SnapshotsProxyView,
-    VodProxyView,
-    VodSegmentProxyView,
-)
+from .views import async_setup as views_async_setup
+from .ws_api import async_setup as ws_api_async_setup
 
 SCAN_INTERVAL = timedelta(seconds=5)
 
@@ -169,20 +163,17 @@ async def async_setup(hass: HomeAssistant, config: Config) -> bool:
 
     hass.data.setdefault(DOMAIN, {})
 
-    session = async_get_clientsession(hass)
-    hass.http.register_view(JSMPEGProxyView(session))
-    hass.http.register_view(NotificationsProxyView(session))
-    hass.http.register_view(RecordingsProxyView(session))
-    hass.http.register_view(SnapshotsProxyView(session))
-    hass.http.register_view(VodProxyView(session))
-    hass.http.register_view(VodSegmentProxyView(session))
+    ws_api_async_setup(hass)
+    views_async_setup(hass)
     return True
 
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     """Set up this integration using UI."""
-
-    client = FrigateApiClient(entry.data.get(CONF_URL), async_get_clientsession(hass))
+    client = FrigateApiClient(
+        entry.data.get(CONF_URL),
+        async_get_clientsession(hass),
+    )
     coordinator = FrigateDataUpdateCoordinator(hass, client=client)
     await coordinator.async_config_entry_first_refresh()
 
@@ -218,6 +209,9 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     current_devices: set[tuple[str, str]] = set({get_frigate_device_identifier(entry)})
     for item in get_cameras_and_zones(config):
         current_devices.add(get_frigate_device_identifier(entry, item))
+
+    if config.get("birdseye", {}).get("restream", False):
+        current_devices.add(get_frigate_device_identifier(entry, "birdseye"))
 
     device_registry = dr.async_get(hass)
     for device_entry in dr.async_entries_for_config_entry(
@@ -283,7 +277,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
                 name=new_name,
             )
 
-    hass.config_entries.async_setup_platforms(entry, PLATFORMS)
+    await hass.config_entries.async_forward_entry_setups(entry, PLATFORMS)
     entry.async_on_unload(entry.add_update_listener(_async_entry_updated))
 
     return True
@@ -394,6 +388,8 @@ async def async_migrate_entry(hass: HomeAssistant, config_entry: ConfigEntry) ->
 
 class FrigateEntity(Entity):  # type: ignore[misc]
     """Base class for Frigate entities."""
+
+    _attr_has_entity_name = True
 
     def __init__(self, config_entry: ConfigEntry):
         """Construct a FrigateEntity."""

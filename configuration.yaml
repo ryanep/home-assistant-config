@@ -2,6 +2,7 @@ automation manual: !include config/automations.yaml
 automation ui: !include automations.yaml
 binary_sensor: !include config/binary-sensors.yaml
 camera: !include config/cameras.yaml
+command_line: !include config/command-line.yaml
 default_config: !include config/default-config.yaml
 google_assistant: !include config/google-assistant.yaml
 group: !include config/groups.yaml
@@ -13,7 +14,6 @@ prometheus: !include config/prometheus.yaml
 scene manual: !include config/scenes.yaml
 scene ui: !include scenes.yaml
 script: !include config/scripts.yaml
-sensor: !include config/sensors.yaml
 shell_command: !include config/shell-commands.yaml
 switch: !include config/switches.yaml
 template: !include config/templates.yaml

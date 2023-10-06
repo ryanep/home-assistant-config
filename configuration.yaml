@@ -1,9 +1,48 @@
+# Default config
+assist_pipeline:
+backup:
+bluetooth:
+#cloud: -- Disabled
+config:
+conversation:
+counter:
+dhcp:
+energy:
+frontend:
+hardware:
+history:
+homeassistant_alerts:
+image_upload:
+input_button:
+input_datetime:
+input_number:
+input_select:
+input_text:
+logbook:
+logger:
+map:
+media_source:
+mobile_app:
+my:
+network:
+person:
+schedule:
+ssdp:
+stream:
+sun:
+system_health:
+tag:
+timer:
+usb:
+webhook:
+zone:
+
+# Custom config
 automation manual: !include config/automations.yaml
 automation ui: !include automations.yaml
 binary_sensor: !include config/binary-sensors.yaml
 camera: !include config/cameras.yaml
 command_line: !include config/command-line.yaml
-default_config: !include config/default-config.yaml
 google_assistant: !include config/google-assistant.yaml
 group: !include config/groups.yaml
 homeassistant: !include config/home-assistant.yaml

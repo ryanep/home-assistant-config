@@ -1,2 +1,0 @@
-start_transmission: !secret shell_command_transmission_start
-stop_transmission: !secret shell_command_transmission_stop

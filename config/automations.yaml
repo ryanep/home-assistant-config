@@ -77,25 +77,6 @@
     message: Internet is running slow.
     title: Internet Slow
   mode: single
-  
-- id: '1642159359141'
-  alias: Study Dimmer Switch
-  description: ''
-  trigger:
-  - device_id: f3b5dbef5fe49c8dd80a269a2dbd4b3e
-    domain: hue
-    platform: device
-    type: initial_press
-    subtype: 1
-    unique_id: a58ddbe7-485e-4d9b-817e-d5b1bb43e5b4
-  condition: []
-  action:
-  - type: turn_on
-    device_id: 07bda9b16717d442c93a0c60113bcd34
-    entity_id: light.study_main_light
-    domain: light
-    brightness_pct: 50
-  mode: single
 
 - id: '1642684462952'
   alias: Stop Transmission Automation

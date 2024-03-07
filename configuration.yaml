@@ -41,7 +41,6 @@ zone:
 automation manual: !include config/automations.yaml
 automation ui: !include automations.yaml
 binary_sensor: !include config/binary-sensors.yaml
-camera: !include config/cameras.yaml
 command_line: !include config/command-line.yaml
 device_tracker: !include config/device-tracker.yaml
 google_assistant: !include config/google-assistant.yaml

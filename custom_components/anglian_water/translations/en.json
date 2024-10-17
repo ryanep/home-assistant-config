@@ -1,0 +1,68 @@
+{
+    "config": {
+        "step": {
+            "user": {
+                "description": "If you need help with the configuration have a look here: https://github.com/pantherale0/haanglianwater",
+                "data": {
+                    "username": "Username",
+                    "password": "Password",
+                    "device_id": "Device ID",
+                    "area": "Area"
+                }
+            },
+            "tariff": {
+                "description": "Select your water tariff here, if it is not shown or you have a discounted rate, use \"Custom\".",
+                "data": {
+                    "tariff": "Water Tariff"
+                }
+            },
+            "custom_rate": {
+                "description": "Provide your water rate here, this should exclude sewerage as this integration only supports 'import' water.",
+                "data": {
+                    "custom_rate": "Custom Water Rate"
+                }
+            }
+        },
+        "error": {
+            "auth": "Username/Password is wrong.",
+            "connection": "Unable to connect to the server.",
+            "unknown": "Unknown error occurred.",
+            "maintenance": "Anglian Water app service is currently unavailble due to maintenance. Try again later."
+        }
+    },
+    "exceptions": {
+        "maintenance": {
+            "message": "Anglian Water app service is currently unavailble due to maintenance."
+        }
+    },
+    "services": {
+        "force_refresh_statistics": {
+            "name": "Force Refresh Statistics",
+            "description": "This will force refresh all of the data for the specified range for both water usage and cost.",
+            "fields": {
+                "start": {
+                    "name": "Start",
+                    "description": "The start of the period to refresh."
+                },
+                "end": {
+                    "name": "End",
+                    "description": "The end of the period to refresh."
+                }
+            }
+        },
+        "get_readings": {
+            "name": "Get Available Readings",
+            "description": "Get available water meter readings for a given period.",
+            "fields": {
+                "start": {
+                    "name": "Start",
+                    "description": "The start of the period to retrieve."
+                },
+                "end": {
+                    "name": "End",
+                    "description": "The end of the period to retrieve."
+                }
+            }
+        }
+    }
+}
